@@ -103,10 +103,6 @@ const NavBar = () => {
                         </NavLink>
                         {currentUser ? loggedInIcons : loggedOutIcons}
                     </Nav>
-                    {/*<Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-success">Search</Button>
-                    </Form>*/}
                 </Navbar.Collapse>
             </Container>
         </Navbar>
