@@ -32,13 +32,17 @@ function SignInForm() {
     const history = useHistory();
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         try {
             const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-            setCurrentUser(data.user);
+            setCurrentUser(data.user)
+            /*const { access_token, refresh_token, user } = response.data;
+
+            localStorage.setItem('accessToken', access_token);
+            localStorage.setItem('refreshToken', refresh_token);
+            localStorage.setItem('user', JSON.stringify(user));*/
             history.push("/");
         } catch (err) {
-            setErrors(err.response?.data);
+            setErrors(err.response?.data)
         }
     };
     const handleChange = (event) => {
