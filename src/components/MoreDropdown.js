@@ -1,6 +1,6 @@
 import React from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
-import Styles from "../styles/MoreDropdown.module.css";
+import Styles from "../styles/MoreDropDown.module.css";
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
