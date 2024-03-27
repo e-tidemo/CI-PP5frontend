@@ -33,6 +33,7 @@ function PostCreateForm() {
   const history = useHistory();
 
   const handleChange = (event) => {
+    console.log('handleChange called');
     setPostData({
       ...postData,
       [event.target.name]: event.target.value,
@@ -40,6 +41,7 @@ function PostCreateForm() {
   };
 
   const handleChangeImage = (event) => {
+    console.log('handleChangeImage called');
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
       setPostData({
@@ -51,6 +53,7 @@ function PostCreateForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('Form submitted');
     const formData = new FormData();
 
     formData.append("title", title);
@@ -58,7 +61,7 @@ function PostCreateForm() {
     formData.append("image", imageInput.current.files[0]);
 
     try {
-      const { data } = await axiosReq.post('https://world-of-craft-670e0fb14b24.herokuapp.com/posts/', formData);
+      const { data } = await axiosReq.post('/posts/', formData);
       history.push(`/posts/${data.id}`);
     } catch (err) {
       console.log(err);
