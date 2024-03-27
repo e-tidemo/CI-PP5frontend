@@ -58,7 +58,7 @@ function PostCreateForm() {
     formData.append("image", imageInput.current.files[0]);
 
     try {
-      const { data } = await axiosReq.post('/posts/', formData);
+      const { data } = await axiosReq.post('https://world-of-craft-670e0fb14b24.herokuapp.com/posts/', formData);
       history.push(`/posts/${data.id}`);
     } catch (err) {
       console.log(err);
