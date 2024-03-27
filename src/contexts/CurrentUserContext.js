@@ -6,12 +6,12 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
 
-export const useCurrentUser = () => useContext(CurrentUserContext)
-export const useSetCurrentUser = () => useContext(setCurrentUserContext)
+export const useCurrentUser = () => useContext(CurrentUserContext);
+export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
-    const history = useHistory()
+    const history = useHistory();
 
     const handleMount = async () => {
         try {
@@ -23,7 +23,7 @@ export const CurrentUserProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        handleMount()
+        handleMount();
     }, []);
 
     useMemo(() => {
@@ -45,7 +45,7 @@ export const CurrentUserProvider = ({ children }) => {
             (err) => {
                 return Promise.reject(err);
             }
-        )
+        );
         axiosRes.interceptors.response.use(
             (response) => response,
             async (err) => {
@@ -69,9 +69,9 @@ export const CurrentUserProvider = ({ children }) => {
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
-            <CurrentUserContext.Provider value={setCurrentUser}>
+            <SetCurrentUserContext.Provider value={setCurrentUser}>
                 {children}
-            </CurrentUserContext.Provider>
+            </SetCurrentUserContext.Provider>
         </CurrentUserContext.Provider>
-    )
-}
+    );
+};
