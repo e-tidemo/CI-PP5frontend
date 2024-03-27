@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { CurrentUserProvider } from './contexts/CurrentUserContext';
 
 ReactDOM.render(
+
     <Router>
       <CurrentUserProvider>
         <App />
