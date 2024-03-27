@@ -38,18 +38,8 @@ const SignUpForm = () => {
             return;
         }
         try {
-            await axios.post("https://world-of-craft-0e06bf8581a1.herokuapp.com/dj-rest-auth/registration/", {
-                username,
-                email,
-                password1,
-                password2
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            //At successful sign up - redirect to profile detail page
-            history.push(`/profile/${username}`);
+            await axios.post("/dj-rest-auth/registration/", signUpData);
+            history.push("/signin");
         } catch (err) {
             if (err.response) {
                 const errorData = err.response.data;

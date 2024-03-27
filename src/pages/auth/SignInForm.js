@@ -20,7 +20,7 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 function SignInForm() {
     const setCurrentUser = useSetCurrentUser();
 
-    const [signInData, setSignInData] = useState({ 
+    const [signInData, setSignInData] = useState({
         email: '',
         password: '',
     });
@@ -32,19 +32,15 @@ function SignInForm() {
     const history = useHistory();
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try {
-            const {data} = await axios.post("https://world-of-craft-0e06bf8581a1.herokuapp.com/dj-rest-auth/login/", signInData);
-            setCurrentUser(data.user)
-            /*const { access_token, refresh_token, user } = response.data;
 
-            localStorage.setItem('accessToken', access_token);
-            localStorage.setItem('refreshToken', refresh_token);
-            localStorage.setItem('user', JSON.stringify(user));*/
+        try {
+            const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+            setCurrentUser(data.user);
             history.push("/");
-        } catch (error) {
-            setErrors(error.response?.data)
+        } catch (err) {
+            setErrors(err.response?.data);
         }
-    }
+    };
     const handleChange = (event) => {
         setSignInData({ ...signInData, [event.target.name]: event.target.value });
     };
