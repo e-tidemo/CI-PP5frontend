@@ -53,7 +53,6 @@ function PostCreateForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Form submitted');
     const formData = new FormData();
 
     formData.append("title", title);

@@ -12,7 +12,7 @@ import PostsPage from "./pages/posts/PostsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import PostEditForm from "./pages/posts/PostEditForm";
 import ContactForm from "./pages/ContactForm.js";
-import Panel from "./Panel.js";
+import Panel from "./pages/Panel.js";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -27,7 +27,6 @@ function App() {
             exact
             path="/"
             render={() => (
-              <Panel />,
               <PostsPage message="No results found. Adjust the search keyword." />
             )}
           />
