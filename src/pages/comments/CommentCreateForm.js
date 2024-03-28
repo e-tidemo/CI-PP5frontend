@@ -14,13 +14,15 @@ function CommentCreateForm(props) {
   const [content, setContent] = useState("");
 
   const handleChange = (event) => {
+    console.log('handleChange called')
     setContent(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('form submitted')
     try {
-      const { data } = await axiosRes.post("/comments/", {
+      const { data } = await axiosRes.post('/comments/', {
         content,
         post: post.id,
       });
