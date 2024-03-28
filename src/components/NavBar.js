@@ -88,7 +88,7 @@ const NavBar = () => {
       to="https://world-of-craft-670e0fb14b24.herokuapp.com/admin/login/?next=/admin/"
       target="_blank"
     >
-      Admin Panel
+      Admin Advice Panel
     </NavLink>
   ) : null;
 

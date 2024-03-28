@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../styles/Post.module.css';
+import styles from './styles/Post.module.css';
 import { Card, Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Avatar from "../../components/Avatar";
-import { axiosRes } from '../../api/axiosDefault';
+import Avatar from "./components/Avatar";
+import { axiosRes } from './api/axiosDefault';
 
 const Panel = () => {
     const [panels, setPanels] = useState([]);
