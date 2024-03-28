@@ -6,7 +6,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
-import { axiosRes } from "../../api/axiosDefault";
+import { axiosReq } from "../../api/axiosDefault";
 
 
 function CommentCreateForm(props) {
@@ -22,9 +22,9 @@ function CommentCreateForm(props) {
     event.preventDefault();
     console.log('form submitted')
     try {
-      const { data } = await axiosRes.post('/comments/', {
+      const { data } = await axiosReq.post('/comments/', {
         content,
-        post: post.id,
+        post,
       });
       setComments((prevComments) => ({
         ...prevComments,

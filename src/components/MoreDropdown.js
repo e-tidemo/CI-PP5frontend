@@ -22,7 +22,8 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     
         <Dropdown.Menu 
         className="text-center"
-        popperConfig={{ strategy: "fixed" }}>
+        popperConfig={{ strategy: "fixed" }}
+        >
           <Dropdown.Item 
           className={Styles.DropdownItem}
           onClick={handleEdit}
