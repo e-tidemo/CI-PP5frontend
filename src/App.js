@@ -12,6 +12,7 @@ import PostsPage from "./pages/posts/PostsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import PostEditForm from "./pages/posts/PostEditForm";
 import ContactForm from "./pages/ContactForm.js";
+import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -55,6 +56,7 @@ function App() {
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/contact-us" render={() => <ContactForm />} />
+          <Route exact path="/admin-panel" render={() => <AdminPanel />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

@@ -81,6 +81,17 @@ const NavBar = () => {
     </>
   );
 
+  const adminLink = currentUser && currentUser.is_staff ? (
+    <NavLink
+      className={styles.NavLink}
+      activeClassName={styles.Active}
+      to="https://world-of-craft-670e0fb14b24.herokuapp.com/admin/login/?next=/admin/"
+      target="_blank"
+    >
+      Admin Panel
+    </NavLink>
+  ) : null;
+
   return (
     <Navbar
       expanded={expanded}
