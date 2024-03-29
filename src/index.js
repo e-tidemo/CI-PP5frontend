@@ -5,15 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { CurrentUserProvider } from './contexts/CurrentUserContext';
-import { ProfileDataProvider } from "./contexts/ProfileDataContext";
+import { PostDataProvider } from "./contexts/PostDataContext";
 
 ReactDOM.render(
 
     <Router>
       <CurrentUserProvider>
-        <ProfileDataProvider>
+        <PostDataProvider>
           <App />
-        </ProfileDataProvider>
+        </PostDataProvider>
       </CurrentUserProvider>
     </Router>,
   document.getElementById('root')

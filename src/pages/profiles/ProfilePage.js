@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from "react";
-
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-
+import { useParams } from "react-router";
+import { axiosReq } from "../../api/axiosDefault";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Asset from "../../components/Asset";
-
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefault";
-import {
-  useProfileData,
-  useSetProfileData,
-} from "../../contexts/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+import { Button, Image, Container, Row, Col } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
@@ -25,15 +14,11 @@ import NoResults from "../../assets/no-results.png";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [profile, setProfile] = useState(null);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
 
   const currentUser = useCurrentUser();
   const { id } = useParams();
-
-  const setProfileData = useSetProfileData();
-  const { pageProfile } = useProfileData();
-
-  const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
 
   useEffect(() => {
@@ -44,10 +29,7 @@ function ProfilePage() {
             axiosReq.get(`/profiles/${id}/`),
             axiosReq.get(`/posts/?owner__profile=${id}`),
           ]);
-        setProfileData((prevState) => ({
-          ...prevState,
-          pageProfile: { results: [pageProfile] },
-        }));
+        setProfile(pageProfile);
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
@@ -55,31 +37,31 @@ function ProfilePage() {
       }
     };
     fetchData();
-  }, [id, setProfileData]);
+  }, [id]);
 
-  const mainProfile = (
+  const mainProfile = profile && (
     <>
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
             className={styles.ProfileImage}
             roundedCircle
-            src={profile?.image}
+            src={profile.image}
           />
         </Col>
         <Col lg={6}>
-          <h3 className="m-2">{profile?.owner}</h3>
+          <h3 className="m-2">{profile.owner}</h3>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
-              <div>{profile?.posts_count}</div>
+              <div>{profile.posts_count}</div>
               <div>posts</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>{profile?.followers_count}</div>
+              <div>{profile.followers_count}</div>
               <div>followers</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>{profile?.following_count}</div>
+              <div>{profile.following_count}</div>
               <div>following</div>
             </Col>
           </Row>
@@ -87,7 +69,7 @@ function ProfilePage() {
         <Col lg={3} className="text-lg-right">
           {currentUser &&
             !is_owner &&
-            (profile?.following_id ? (
+            (profile.following_id ? (
               <Button
                 className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
                 onClick={() => {}}
@@ -103,7 +85,7 @@ function ProfilePage() {
               </Button>
             ))}
         </Col>
-        {profile?.content && <Col className="p-3">{profile.content}</Col>}
+        {profile.content && <Col className="p-3">{profile.content}</Col>}
       </Row>
     </>
   );
