@@ -60,6 +60,8 @@ const NavBar = () => {
                 to={`/profiles/${currentUser?.profile_id}`}
             >
                 <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+                {console.log(currentUser)} 
+                {console.log(currentUser?.profile_image)}
             </NavLink>
             {currentUser && currentUser.is_staff && (
                 <a

@@ -9,6 +9,7 @@ import SignInForm from "./pages/auth/SignInForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
+import Profile from "./pages/profiles/Profile.js";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import PostEditForm from "./pages/posts/PostEditForm";
 import ContactForm from "./pages/ContactForm.js";
@@ -56,6 +57,7 @@ function App() {
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/contact-us" render={() => <ContactForm />} />
+          <Route exact path="/profiles/:id" render={() => <Profile />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
