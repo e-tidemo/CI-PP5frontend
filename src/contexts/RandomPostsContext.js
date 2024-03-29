@@ -10,9 +10,9 @@ export const useSetProfileData = () => useContext(SetProfileDataContext);
 
 export const ProfileDataProvider = ({ children }) => {
     const [profileData, setProfileData] = useState({
-        // we will use the pageProfile later
+        // We will use the pageProfile later
         pageProfile: { results: [] },
-        popularProfiles: { results: [] },
+        randomPosts: { results: [] }, // Change popularProfiles to randomPosts
     });
 
     const currentUser = useCurrentUser();
@@ -21,12 +21,12 @@ export const ProfileDataProvider = ({ children }) => {
         const handleMount = async () => {
             try {
                 const { data } = await axiosReq.get(
-                    "/profiles/"
+                    "/posts/" // Change endpoint to fetch posts
                 );
-                const shuffledProfiles = data.results.sort(() => Math.random() - 0.5);
+                const shuffledPosts = data.results.sort(() => Math.random() - 0.5);
                 setProfileData((prevState) => ({
                     ...prevState,
-                    popularProfiles: { results: shuffledProfiles },
+                    randomPosts: { results: shuffledPosts }, // Update state with shuffled posts
                 }));
             } catch (err) {
                 console.log(err);
@@ -34,11 +34,12 @@ export const ProfileDataProvider = ({ children }) => {
         };
         handleMount();
     }, [currentUser]);
+    
     return (
         <ProfileDataContext.Provider value={profileData}>
             <SetProfileDataContext.Provider value={setProfileData}>
                 {children}
             </SetProfileDataContext.Provider>
         </ProfileDataContext.Provider>
-    )
-}
+    );
+};

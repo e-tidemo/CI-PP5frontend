@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "../styles/NavBar.module.css";
+import styles from "../../styles/ProfilePage.module.css";
 import { NavLink, useHistory } from 'react-router-dom';
 
 const ProfileDetail = ({ username }) => {
@@ -12,7 +12,7 @@ const ProfileDetail = ({ username }) => {
         const fetchProfile = async () => {
             try {
                 const response = await axios.get(
-                    `/api/profiles/${username}`
+                    `/profiles/${username}`
                 );
                 setProfile(response.data);
             } catch (error) {
