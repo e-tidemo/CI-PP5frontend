@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -9,6 +10,7 @@ import Asset from "../../components/Asset";
 
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css";
+import btnStyles from "../../styles/Button.module.css"; 
 import { axiosReq } from "../../api/axiosDefault";
 import { useLocation } from 'react-router';
 import NoResults from "../../assets/no-results.png";
@@ -21,6 +23,7 @@ function PostsPage({ message, filter = "" }) {
     const { pathname } = useLocation();
 
     const [query, setQuery] = useState("");
+    const history = useHistory();
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -42,10 +45,13 @@ function PostsPage({ message, filter = "" }) {
         }
     }, [filter, query, pathname]);
 
+    const handleDiscoverClick = () => {
+        history.push("/discover");
+    };
+
     return (
         <Row className="h-100">
             <Col className="py-2 p-0 p-lg-2" lg={8}>
-                <RandomPosts />
                 <i className={`fas fa-search ${styles.SearchIcon}`} />
                 <Form className={styles.SearchBar} onSubmit={(event) => event.preventDefault()}>
                     <Form.Control
@@ -55,6 +61,7 @@ function PostsPage({ message, filter = "" }) {
                         className="mr-sm.2"
                         placeholder="Search posts" />
                 </Form>
+                <button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={handleDiscoverClick}>Discover more</button>
                 {hasLoaded ? (
                     <>
                         {posts.results.length ? (
