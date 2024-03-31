@@ -11,14 +11,19 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
+import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [profile, setProfile] = useState(null);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
 
   const currentUser = useCurrentUser();
   const { id } = useParams();
+
+  const { setProfileData, handleFollow } = useSetProfileData();
+  const { pageProfile } = useProfileData();
+
+  const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
 
   useEffect(() => {
@@ -29,7 +34,10 @@ function ProfilePage() {
             axiosReq.get(`/profiles/${id}/`),
             axiosReq.get(`/posts/?owner__profile=${id}`),
           ]);
-        setProfile(pageProfile);
+        setProfileData((prevState) => ({
+          ...prevState,
+          pageProfile: { results: [pageProfile] },
+        }));
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
@@ -37,7 +45,8 @@ function ProfilePage() {
       }
     };
     fetchData();
-  }, [id]);
+  }, [id, setProfileData]);
+
 
   const mainProfile = profile && (
     <>
@@ -46,18 +55,18 @@ function ProfilePage() {
           <Image
             className={styles.ProfileImage}
             roundedCircle
-            src={profile.image}
+            src={profile?.image}
           />
         </Col>
         <Col lg={6}>
           <h3 className="m-2">{profile.owner}</h3>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
-              <div>{profile.posts_count}</div>
+              <div>{profile?.posts_count}</div>
               <div>posts</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>{profile.followers_count}</div>
+              <div>{profile?.followers_count}</div>
               <div>followers</div>
             </Col>
             <Col xs={3} className="my-2">
@@ -69,7 +78,7 @@ function ProfilePage() {
         <Col lg={3} className="text-lg-right">
           {currentUser &&
             !is_owner &&
-            (profile.following_id ? (
+            (profile?.following_id ? (
               <Button
                 className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
                 onClick={() => {}}
@@ -79,13 +88,13 @@ function ProfilePage() {
             ) : (
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Black}`}
-                onClick={() => {}}
+                onClick={() => handleFollow(profile)}
               >
                 follow
               </Button>
             ))}
         </Col>
-        {profile.content && <Col className="p-3">{profile.content}</Col>}
+        {profile?.content && <Col className="p-3">{profile.content}</Col>}
       </Row>
     </>
   );
@@ -127,8 +136,6 @@ function ProfilePage() {
             <Asset spinner />
           )}
         </Container>
-      </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
       </Col>
     </Row>
   );

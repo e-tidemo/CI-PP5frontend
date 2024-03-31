@@ -20,7 +20,7 @@ const RandomPosts = ({ mobile }) => {
         mobile && "d-lg-none text-center mb-3"
       }`}
     >
-      {(randomPosts?.results?.length || 0) > 0 ? ( // Access results from randomPosts
+      {(randomPosts?.results?.length || 0) > 0 ? ( 
         <>
           {mobile ? (
             <div className="d-flex justify-content-around">
