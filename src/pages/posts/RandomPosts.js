@@ -1,39 +1,36 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import appStyles from "../../App.module.css";
+import styles from "../../styles/RandomPosts.module.css";
 import Asset from "../../components/Asset";
-import { usePostData } from "../../contexts/PostDataContext"; // Import from PostDataContext
-import Post from "../posts/Post";
+import { usePostData } from "../../contexts/PostDataContext";
+import { Link } from "react-router-dom";
 import { shuffleArray } from "../../utils/utils";
 
 const RandomPosts = ({ mobile }) => {
-  const { randomPosts } = usePostData(); // Access randomPosts from the context
+  const { randomPosts } = usePostData();
 
-  // Function to shuffle array randomly
   const shufflePosts = () => {
-    return shuffleArray(randomPosts?.results || []); // Access results from randomPosts
+    return shuffleArray(randomPosts?.results || []);
   };
 
   return (
-    <Container
-      className={`${appStyles.Content} ${
-        mobile && "d-lg-none text-center mb-3"
-      }`}
-    >
-      {(randomPosts?.results?.length || 0) > 0 ? ( 
-        <>
-          {mobile ? (
-            <div className="d-flex justify-content-around">
-              {shufflePosts().slice(0, 4).map((post) => (
-                <Post key={post.id} {...post} mobile />
-              ))}
-            </div>
-          ) : (
-            shufflePosts().map((post) => (
-              <Post key={post.id} {...post} />
-            ))
-          )}
-        </>
+    <Container className={`${appStyles.Content} ${mobile && "d-lg-none text-center mb-3"}`}>
+      {(randomPosts?.results?.length || 0) > 0 ? (
+        <Row>
+          {shufflePosts().slice(0, 6).map((post) => (
+            <Col key={post.id} xs={12} sm={6} md={4} lg={4} xl={4}>
+              <Link to={`/posts/${post.id}`}>
+                {/* Apply specific styling for images displayed in the grid layout for desktop screens */}
+                <img
+                  src={post.image}
+                  alt="Post"
+                  className={`img-fluid ${!mobile ? styles["random-post-desktop-image"] : ""}`}
+                />
+              </Link>
+            </Col>
+          ))}
+        </Row>
       ) : (
         <Asset spinner />
       )}

@@ -15,7 +15,7 @@ import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import RandomPosts from "./RandomPosts";
 
-function PostsPage({ message, filter = "" }) { 
+function PostsPage({ message, filter = "" }) {
     const [posts, setPosts] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
@@ -45,7 +45,7 @@ function PostsPage({ message, filter = "" }) {
     return (
         <Row className="h-100">
             <Col className="py-2 p-0 p-lg-2" lg={8}>
-                <p>Popular profiles mobile</p>
+                <RandomPosts />
                 <i className={`fas fa-search ${styles.SearchIcon}`} />
                 <Form className={styles.SearchBar} onSubmit={(event) => event.preventDefault()}>
                     <Form.Control
@@ -67,7 +67,7 @@ function PostsPage({ message, filter = "" }) {
                                 dataLength={posts.results.length}
                                 loader={<Asset spinner />}
                                 hasMore={!!posts.next}
-                                next={() => {}}
+                                next={() => { }}
                             />
                         ) : (
                             <Container className={appStyles.Content}>
