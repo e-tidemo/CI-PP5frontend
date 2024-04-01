@@ -37,8 +37,9 @@
   .Green,
   .GreenOutline:hover,
   .Bright:hover {
-    background-color: #e4f3c0;
-    color: #2d3334;
+    background-color: #868735;
+    color: white;
+    font-weight: bold;
   }
   
   .GreenOutline,

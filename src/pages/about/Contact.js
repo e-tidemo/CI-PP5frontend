@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-    axios.defaults.xsrfCookieName = "csrftoken";
+import { Container, Form, Button } from 'react-bootstrap';
+import btnStyles from "../../styles/Button.module.css"; 
+import styles from "../../styles/Contact.module.css";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -51,27 +52,44 @@ const Contact = () => {
     };
 
     return (
-        <div>
-            <h1>Contact Us</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name:</label><br />
-                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required /><br />
-                <label htmlFor="email">Email:</label><br />
-                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required /><br />
-                <label htmlFor="subject">Subject:</label><br />
-                <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} required /><br />
-                <label htmlFor="message">Message:</label><br />
-                <textarea id="message" name="message" value={formData.message} onChange={handleChange} required /><br />
-                <label htmlFor="contactChoices">Contact Reason:</label><br />
-                <select id="contactChoices" name="contactChoices" value={formData.contactChoices} onChange={handleChange}>
-                    <option value="1">Report user</option>
-                    <option value="2">Business inquiries</option>
-                    <option value="3">Feedback about website</option>
-                    <option value="4">Other questions</option>
-                </select><br /><br />
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+        <Container className={`${styles.Container} justify-content-center align-items-center vh-100`}>
+            <div>
+                <h1>Contact Us</h1>
+                <Form onSubmit={handleSubmit} className={styles.Form}>
+                    <Form.Group controlId="name">
+                        <Form.Label>Name:</Form.Label>
+                        <Form.Control type="text" name="name" value={formData.name} onChange={handleChange} required />
+                    </Form.Group>
+
+                    <Form.Group controlId="email">
+                        <Form.Label>Email:</Form.Label>
+                        <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} required />
+                    </Form.Group>
+
+                    <Form.Group controlId="subject">
+                        <Form.Label>Subject:</Form.Label>
+                        <Form.Control type="text" name="subject" value={formData.subject} onChange={handleChange} required />
+                    </Form.Group>
+
+                    <Form.Group controlId="message">
+                        <Form.Label>Message:</Form.Label>
+                        <Form.Control as="textarea" rows={3} name="message" value={formData.message} onChange={handleChange} required />
+                    </Form.Group>
+
+                    <Form.Group controlId="contactChoices">
+                        <Form.Label>Contact Reason:</Form.Label>
+                        <Form.Control as="select" name="contactChoices" value={formData.contactChoices} onChange={handleChange}>
+                            <option value="1">Report user</option>
+                            <option value="2">Business inquiries</option>
+                            <option value="3">Feedback about website</option>
+                            <option value="4">Other questions</option>
+                        </Form.Control>
+                    </Form.Group>
+
+                    <Button variant="primary" className={`${btnStyles.Button} ${btnStyles.Green}`} type="submit">Submit</Button>
+                </Form>
+            </div>
+        </Container>
     );
 };
 
