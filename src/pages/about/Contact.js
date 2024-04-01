@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -7,7 +9,7 @@ const Contact = () => {
         email: '',
         subject: '',
         message: '',
-        contactChoices: '4' // Default value for "Other questions"
+        contactChoices: '4'
     });
 
     const [csrfToken, setCsrfToken] = useState('');
