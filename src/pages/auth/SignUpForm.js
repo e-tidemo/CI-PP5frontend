@@ -32,7 +32,7 @@ const SignUpForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!username || !email || !password1 || !password2) {
+        if (!username || !password1 || !password2) {
             // If any of the required fields are empty, set an error and return
             setErrors({ message: 'Please fill in all required fields.' });
             return;
@@ -48,8 +48,8 @@ const SignUpForm = () => {
                     // Set the error message to be displayed on the sign-up page
                     setErrors({ message: errorData.username.join(', ') });
                 } else {
-                    // If no specific error message found, set a generic error message
-                    setErrors({ message: JSON.stringify(errorData) });
+                    // If no specific username error message found, set a generic error message
+                    setErrors({ message: 'An error occurred while signing up.' });
                 }
             } else {
                 // Handle network errors or other unexpected errors
