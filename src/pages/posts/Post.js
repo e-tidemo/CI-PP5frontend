@@ -81,15 +81,17 @@ const Post = (props) => {
                         <Avatar src={profile_image_url} height={55} />
                         {owner}
                     </Link>
-                    <div className="d-flex align-items-center">
-                        <span>{updated_at}</span>
-                        {is_owner && postPage && (
-                            <MoreDropdown
-                                handleEdit={handleEdit}
-                                handleDelete={handleDelete}
-                            />
-                        )}
-                    </div>
+                    {is_owner && postPage && (
+                        <div className="d-flex align-items-center">
+                            <span>{updated_at}</span>
+                            <div style={{ marginLeft: '10px' }}>
+                                <MoreDropdown
+                                    handleEdit={handleEdit}
+                                    handleDelete={handleDelete}
+                                />
+                            </div>
+                        </div>
+                    )}
                 </Media>
             </Card.Body>
             <Link to={`/posts/${id}`}>

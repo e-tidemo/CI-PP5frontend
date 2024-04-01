@@ -1,10 +1,8 @@
 .DropdownItem {
     display: block;
     max-width: 50%;
-    padding: 0px;
-    color: #f7eedf;
-    z-index: 99;
-    position: absolute;
+    color: #2d3334;
+    padding: 4px 8px;
   }
   
 .Absolute {
