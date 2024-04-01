@@ -67,6 +67,27 @@ export const CurrentUserProvider = ({ children }) => {
         );
     }, [history]);
 
+    useEffect(() => {
+        const fetchIsStaff = async () => {
+            try {
+                const { data } = await axiosReq.get("/profiles/");
+                const userProfile = data.results.find(profile => profile.owner === currentUser?.pk);
+                if (userProfile) {
+                    setCurrentUser(prevCurrentUser => ({
+                        ...prevCurrentUser,
+                        is_staff: userProfile.is_staff
+                    }));
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        };
+    
+        if (currentUser && currentUser.pk) {
+            fetchIsStaff();
+        }
+    }, [currentUser]);
+    
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <SetCurrentUserContext.Provider value={setCurrentUser}>

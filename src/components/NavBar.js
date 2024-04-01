@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import logo from "../assets/logo1.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -36,6 +36,17 @@ const NavBar = () => {
         </NavLink>
     );
 
+    const staffLoggedInIcons = (
+        <NavLink
+            className={styles.NavLink}
+            to="https://world-of-craft-670e0fb14b24.herokuapp.com/admin/login/?next=/admin/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <i className="fa-solid fa-pen-fancy"></i>Admin
+        </NavLink>
+    );
+
     const loggedInIcons = (
         <>
             <NavLink
@@ -55,24 +66,13 @@ const NavBar = () => {
             <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
                 <i className="fas fa-sign-out-alt"></i>Sign out
             </NavLink>
-            {currentUser?.profile_id && (
-                <NavLink
+            <NavLink
                 className={styles.NavLink}
                 to={`/profiles/${currentUser?.profile_id}`}
-              >
+            >
                 <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
-              </NavLink>
-            )}
-            {currentUser && currentUser.is_staff && (
-                <a
-                    className={styles.NavLink}
-                    href="https://world-of-craft-670e0fb14b24.herokuapp.com/admin/login/?next=/admin/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <i className="fa-solid fa-pen-fancy"></i>Admin
-                </a>
-            )}
+            </NavLink>
+            {currentUser && currentUser.is_staff && staffLoggedInIcons}
         </>
     );
 
@@ -124,6 +124,20 @@ const NavBar = () => {
                         >
                             <i className="fas fa-home"></i>Home
                         </NavLink>
+                        <NavDropdown
+                        className={styles.NavDropdown}
+                        title={<>
+                        <i className="fa-regular fa-square-caret-down"></i>
+                        <span>More</span>
+                        </>} 
+                        id="basic-nav-dropdown">
+                            <NavDropdown.Item as={NavLink} to="/contact-us">
+                                <i className="fa-regular fa-address-book"></i>Contact Us
+                                </NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/about-us">
+                                <i className="fa-solid fa-book"></i>About Us
+                                </NavDropdown.Item>
+                        </NavDropdown>
                         {currentUser ? loggedInIcons : loggedOutIcons}
                     </Nav>
                 </Navbar.Collapse>

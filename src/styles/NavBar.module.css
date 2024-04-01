@@ -10,6 +10,10 @@
     color: #f7eedf;
 }
 
+.NavDropdown.Item{
+    color: #2d3334;
+}
+
 i {
     color: #f7eedf;
 }
@@ -20,4 +24,8 @@ i {
 
 .Active {
     color: #bec358;
+}
+
+span {
+    color: #f7eedf;
 }
