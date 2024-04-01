@@ -5,13 +5,14 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import appStyles from "../../App.module.css";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefault";
 import Post from "./Post";
 import Comment from "../comments/Comment";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
+import btnStyles from "../../styles/Button.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
@@ -20,6 +21,7 @@ import RandomPosts from "./RandomPosts";
 function PostPage() {
   const { id } = useParams();
   const [post, setPost] = useState({ results: [] });
+  const history = useHistory();
 
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
@@ -42,10 +44,13 @@ function PostPage() {
     handleMount();
   }, [id]);
 
+  const handleDiscoverClick = () => {
+    history.push("/discover");
+  };
+
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <RandomPosts />
         <Post {...post.results[0]} setPosts={setPost} postPage />
         <Container className={appStyles.Content}>
           {currentUser ? (
@@ -82,6 +87,9 @@ function PostPage() {
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+        <button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={handleDiscoverClick}>Discover more</button>
+        <br />
+        <br />
         <RandomPosts />
       </Col>
     </Row>
