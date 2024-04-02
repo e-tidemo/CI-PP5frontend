@@ -9,16 +9,17 @@ import { PostDataProvider } from "./contexts/PostDataContext";
 import { ProfileDataProvider } from './contexts/ProfileDataContext';
 
 ReactDOM.render(
-
-  <Router>
-    <CurrentUserProvider>
-      <ProfileDataProvider>
-        <PostDataProvider>
-          <App />
-        </PostDataProvider>
-      </ProfileDataProvider>
-    </CurrentUserProvider>
-  </Router>,
+  <React.StrictMode>
+    <Router>
+      <CurrentUserProvider>
+        <ProfileDataProvider>
+          <PostDataProvider>
+            <App />
+          </PostDataProvider>
+        </ProfileDataProvider>
+      </CurrentUserProvider>
+    </Router>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

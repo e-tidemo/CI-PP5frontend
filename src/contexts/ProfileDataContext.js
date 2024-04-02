@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq, axiosRes } from "../api/axiosDefault";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { followHelper, unfollowHelper } from "../utils/utils";
+import { useParams } from "react-router-dom";
 
 const ProfileDataContext = createContext();
 const SetProfileDataContext = createContext();
@@ -16,6 +17,7 @@ export const ProfileDataProvider = ({ children }) => {
   });
 
   const currentUser = useCurrentUser();
+  const { id } = useParams();
 
   const handleFollow = async (clickedProfile) => {
     try {
@@ -63,10 +65,10 @@ export const ProfileDataProvider = ({ children }) => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get("/profiles/");
+        const { data } = await axiosReq.get(`/profiles/${id}/`);
         setProfileData((prevState) => ({
           ...prevState,
-          pageProfile: data,
+          pageProfile: { results: [data] },
         }));
       } catch (err) {
         console.log(err);
@@ -74,7 +76,7 @@ export const ProfileDataProvider = ({ children }) => {
     };
 
     handleMount();
-  }, [currentUser]);
+  }, [currentUser, id]);
 
   return (
     <ProfileDataContext.Provider value={profileData}>

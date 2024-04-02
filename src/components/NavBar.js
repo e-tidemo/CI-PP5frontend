@@ -11,7 +11,7 @@ import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
-const NavBar = () => {
+const NavBar = ({ profile_id }) => {
     const currentUser = useCurrentUser();
     const setCurrentUser = useSetCurrentUser();
 
@@ -48,33 +48,32 @@ const NavBar = () => {
     );
 
     const loggedInIcons = (
-        <>
-            <NavLink
-                className={styles.NavLink}
-                activeClassName={styles.Active}
-                to="/feed"
-            >
-                <i className="fas fa-stream"></i>Feed
-            </NavLink>
-            <NavLink
-                className={styles.NavLink}
-                activeClassName={styles.Active}
-                to="/liked"
-            >
-                <i className="fas fa-heart"></i>Liked
-            </NavLink>
-            <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-                <i className="fas fa-sign-out-alt"></i>Sign out
-            </NavLink>
-            <NavLink
-                className={styles.NavLink}
-                to={`/profiles/${currentUser?.profile_id}`}
-            >
-                <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
-            </NavLink>
-            {currentUser && currentUser.is_staff && staffLoggedInIcons}
-        </>
-    );
+    <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/feed"
+      >
+        <i className="fas fa-stream"></i>Feed
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/liked"
+      >
+        <i className="fas fa-heart"></i>Liked
+      </NavLink>
+      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
+        <i className="fas fa-sign-out-alt"></i>Sign out
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+      </NavLink>
+    </>
+  );
 
     const loggedOutIcons = (
         <>
@@ -139,6 +138,7 @@ const NavBar = () => {
                             </NavDropdown.Item>
                         </NavDropdown>
                         {currentUser ? loggedInIcons : loggedOutIcons}
+                        {currentUser && currentUser.is_staff && staffLoggedInIcons}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
