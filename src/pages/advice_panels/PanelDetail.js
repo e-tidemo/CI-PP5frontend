@@ -31,7 +31,7 @@ function PanelDetail() {
         <Container className={styles.Container}>
             <Row className="justify-content-center">
                 <Col md={8}>
-                    <div className={`${styles.Title} bg-dark text-white p-3 mb-3`}>{panel.title}</div>
+                    <div className={`${styles.Title} text-center p-3 mb-3`}>{panel.title}</div>
                     {panel.image && 
                         <img src={panel.image} alt={panel.alt_text} className="img-fluid rounded" />
                     }
