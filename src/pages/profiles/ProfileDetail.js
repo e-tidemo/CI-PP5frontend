@@ -58,7 +58,6 @@ const ProfileDetail = ({ username }) => {
                     <p>Content: {post.content}</p>
                 </div>
             ))}
-            {/* Display other profile details as needed */}
         </div>
     );
 };
