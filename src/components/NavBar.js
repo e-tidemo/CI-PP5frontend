@@ -134,7 +134,7 @@ const NavBar = () => {
                             <NavDropdown.Item href="https://world-of-craft-670e0fb14b24.herokuapp.com/contact-us">
                                 <i className="fa-regular fa-address-book"></i>Contact Us
                             </NavDropdown.Item>
-                            <NavDropdown.Item as={NavLink} to="/panel">
+                            <NavDropdown.Item as={NavLink} to="/panels">
                                 <i className="fa-solid fa-book"></i>Admin Advice
                             </NavDropdown.Item>
                         </NavDropdown>

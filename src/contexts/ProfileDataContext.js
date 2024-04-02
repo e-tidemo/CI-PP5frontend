@@ -76,8 +76,6 @@ export const ProfileDataProvider = ({ children }) => {
     handleMount();
   }, [currentUser]);
 
-  console.log("Children:", children);
-
   return (
     <ProfileDataContext.Provider value={profileData}>
       <SetProfileDataContext.Provider

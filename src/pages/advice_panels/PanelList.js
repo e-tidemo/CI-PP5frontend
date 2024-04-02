@@ -19,8 +19,10 @@ function PanelList() {
     }, []);
 
     const handlePanelClick = (panelId) => {
+        console.log('Panel ID clicked:', panelId)
         setSelectedPanelId(panelId);
     };
+    console.log('Panels:', panels);
 
     return (
         <div>
