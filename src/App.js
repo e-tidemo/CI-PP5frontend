@@ -13,6 +13,8 @@ import PostEditForm from "./pages/posts/PostEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import DiscoverPage from "./pages/posts/DiscoverPage";
 import Contact from "./pages/about/Contact";
+import PanelList from "./pages/advice_panels/PanelList";
+import PanelDetail from './pages/advice_panels/PanelDetail';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -55,6 +57,8 @@ function App() {
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
+          <Route exact path="/panels/:id" component={PanelDetail} />
+          <Route exact path="/panels" component={PanelList} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route exact path="/discover" render={() => <DiscoverPage />} />
           <Route exact path="/contact-us" render={() => <Contact />} />

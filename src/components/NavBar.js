@@ -125,18 +125,18 @@ const NavBar = () => {
                             <i className="fas fa-home"></i>Home
                         </NavLink>
                         <NavDropdown
-                        className={styles.NavDropdown}
-                        title={<>
-                        <i className="fa-regular fa-square-caret-down"></i>
-                        <span>More</span>
-                        </>} 
-                        id="basic-nav-dropdown">
-                            <NavDropdown.Item as={NavLink} to="/contact-us">
+                            className={styles.NavDropdown}
+                            title={<>
+                                <i className="fa-regular fa-square-caret-down"></i>
+                                <span>More</span>
+                            </>}
+                            id="basic-nav-dropdown">
+                            <NavDropdown.Item href="https://world-of-craft-670e0fb14b24.herokuapp.com/contact-us">
                                 <i className="fa-regular fa-address-book"></i>Contact Us
-                                </NavDropdown.Item>
-                            <NavDropdown.Item as={NavLink} to="/about-us">
-                                <i className="fa-solid fa-book"></i>About Us
-                                </NavDropdown.Item>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/panel">
+                                <i className="fa-solid fa-book"></i>Admin Advice
+                            </NavDropdown.Item>
                         </NavDropdown>
                         {currentUser ? loggedInIcons : loggedOutIcons}
                     </Nav>
