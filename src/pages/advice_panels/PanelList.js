@@ -10,7 +10,7 @@ function PanelList() {
 
     useEffect(() => {
         // Fetch the list of panels when the component mounts
-        axios.get('http://world-of-craft-670e0fb14b24.herokuapp.com/api/panels/')
+        axios.get('https://world-of-craft-670e0fb14b24.herokuapp.com/api/panels/')
             .then(response => {
                 setPanels(response.data);
             })
