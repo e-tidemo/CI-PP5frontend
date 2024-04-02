@@ -28,7 +28,7 @@ function PanelDetail() {
     }
 
     return (
-        <Container>
+        <Container className={styles.Container}>
             <Row className="justify-content-center">
                 <Col md={8}>
                     <div className={`${styles.Title} bg-dark text-white p-3 mb-3`}>{panel.title}</div>

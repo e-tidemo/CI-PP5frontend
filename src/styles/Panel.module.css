@@ -1,29 +1,31 @@
-.Post {
-  background-color: #2d3334;
-  border: 1px solid #2d3334;
-  border-radius: 2px;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-.Post figure,
-h5 {
-  margin: 0 0;
-}
-
-.Heart {
-  color: #f85032;
-}
-
-.Heart:hover {
-  color: #868735;
-}
-
-.HeartOutline:hover {
-  color: #f85032;
-}
-
 .Title {
   font-family: "Pavanam", "Red Hat Text", sans-serif;
   font-size: 3rem;
+}
+
+.Container {
+  background-color: #f7eedf;
+  border: #868735;
+  color: black;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.Headline {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  background-color: #f7eedf;
+  color: black;
+  border: #f7eedf;
+  border-radius: 5px;
+  width: 50%;
+  margin: auto;
+}
+
+h4 {
+  color: black;
+}
+
+.Panels {
+  padding-bottom: 15px;
 }

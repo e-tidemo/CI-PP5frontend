@@ -10,12 +10,13 @@ import Asset from "../../components/Asset";
 
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css";
-import btnStyles from "../../styles/Button.module.css"; 
+import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefault";
 import { useLocation } from 'react-router';
 import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import RandomPosts from "./RandomPosts";
+import PanelList from "../advice_panels/PanelList";
 
 function PostsPage({ message, filter = "" }) {
     const [posts, setPosts] = useState({ results: [] });
@@ -52,6 +53,9 @@ function PostsPage({ message, filter = "" }) {
     return (
         <Row className="h-100">
             <Col className="py-2 p-0 p-lg-2" lg={8}>
+            <Container className="panel-list-container">
+                    <PanelList />
+                </Container>
                 <i className={`fas fa-search ${styles.SearchIcon}`} />
                 <Form className={styles.SearchBar} onSubmit={(event) => event.preventDefault()}>
                     <Form.Control
