@@ -9,7 +9,6 @@ import { PostDataProvider } from "./contexts/PostDataContext";
 import { ProfileDataProvider } from './contexts/ProfileDataContext';
 
 ReactDOM.render(
-  <React.StrictMode>
     <Router>
       <CurrentUserProvider>
         <ProfileDataProvider>
@@ -18,8 +17,7 @@ ReactDOM.render(
           </PostDataProvider>
         </ProfileDataProvider>
       </CurrentUserProvider>
-    </Router>
-  </React.StrictMode>,
+    </Router>,
   document.getElementById('root')
 );
 
